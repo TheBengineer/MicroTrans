@@ -1,0 +1,13 @@
+;*********************************************************************
+; gcc port (C) 2006 James Murray
+;*********************************************************************
+; $Id: S12SerMon2r1.def,v 1.1 2013/01/16 23:48:29 jsm Exp $ 
+
+C64:
+.equ EEpromStart,     0x0000          ;eeprom start (no EEprom)
+.equ EEpromEnd,       0x0000          ;eeprom End
+.equ RamStart,        0x3000          ;first RAM location
+.equ FlashBlks,       0x01            ;# of flash blks
+.equ SectorSize,      0x0400          ;Flash sector size
+.equ LowestPage,      0x3C            ;lowest page
+.equ PagesBlk,        0x04            ;pages per block

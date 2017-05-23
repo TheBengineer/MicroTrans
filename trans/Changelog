@@ -1,0 +1,181 @@
+Trans control code for MS2 or Microsquirt
+/* $Id: Changelog,v 1.49 2015/05/19 17:47:37 jsm Exp $ */
+
+CHANGE LOG
+==========
+
+2013-01-16 JSM
+Created repo.
+Split up main and created vars.
+
+2013-01-17 JSM
+Core newserial working.
+Re-wrote testmode user interface and code.
+
+-- 0.019 released --
+
+2014-08-15 JSM
+Tweak ini file so signature fetch matches size.
+
+2014-09-09 JSM
+Add defines for hardware types.
+Use more port pointers instead of if () {...} sections in main.
+Add Microsquirt V3 wiring. (Lightly tested.)
+Merge in GPIO/A340E port setup from Daniel deVoigt.
+Add else clause for non-paddle per Daniel.
+Change can_poll_id setting to a type in number.
+Add tooltips for all settings and curves.
+Use "Require Power Cycle" on some settings.
+Fix serial buffer size.
+Enable thermistor calibration.
+
+-- 0.020 released --
+
+2014-09-12 JSM
+Apply srlbuf changes from MS2/Extra.
+
+2014-10-01 JSM
+Re-work code to work in same units as MS2/3.
+Re-work VSS code similar to MS3.
+Implement down-shift curves.
+Extend settings to allow for 10 gears.
+Allow common line pressure curve.
+Implement MS3 style software PWM.
+Allow 595Hz for late 4L80E.
+Add preliminary 5L40E support.
+Add preliminary E4OD support. Switch pin 4 = selA, 5=selB, 6=selC. OD=selD
+
+-- 0.021 released --
+
+2014-10-27 JSM
+Sort out brake input, allow polarity to be set.
+Enhance TCC control to allow per-gear enable, RPM, VSS.
+Port over VSSout code from MS3. (Allows PPM, PPK.) (untested)
+Mask interrupts before setting solenoids to prevent disturbance of vssout.
+Re-arrange base and lockup tuning pages. Manual updated.
+
+-- 0.022 released --
+
+2014-10-31 JSM
+Fix bug with gear selector on 4L60E and 4L80E
+Remove debug code for VSSout so it actually changes.
+Add ADC channels to datalog for debugging.
+
+-- 0.023 released --
+
+2014-12-08 JSM
+Add RPM based shifting.
+Add manual mode.
+Add timing retard during shift.
+
+2014-12-10 JSM
+Add prelim W4A33 support.
+Clean up signed/unsigned comparisons.
+Improve analogue gear selector code.
+
+-- 0.024 released --
+
+2014-12-11 JSM
+Revise 4T40E input pattern.
+
+2014-12-12 JSM
+Allow ppm/ppk/driveline for VSS (code from MS3.)
+Allow VSS parameters to be updated on the fly, after 'Burn'.
+Standard automatic mode also upshifts based on max RPM
+ and blocks downshift if calc RPM in lower gear is too high.
+
+-- 0.025 released --
+
+2014-12-16 JSM
+Bump up 'burn' delay in ini file.
+Add CAN burn ACK message.
+
+2014-12-20 JSM
+New CAN TX implementation from MS2/Extra.
+Update CFLAGS,LDFLAGS, serial.c in line with MS2/Extra
+Note: sometimes CAN passthrough with trans as master can be slow. (fixed.)
+Remove a few unused vars.
+Fix bug with config error code.
+
+2014-12-22 JSM
+Tweak to CAN code to ensure packets sent in expected order.
+
+2014-12-27 JSM
+Microsquirt V3 analogue gearsel input didn't match docs. Confirmed as "SPAREADC" AD6.
+Add Solenoid D output.
+Add Selector D input for E4OD, W4A33.
+Implement OD cancel momentary / latching
+Remove some internal temp vars from outpc.
+Microsquirt V3 trans temp input didn't match docs. Confirmed as "MAT" AD1.
+Add 'mimic' VSSout option.
+Re-write some of analogue gear selection to remove busy-wait retry code.
+Add 4L60E LUF support. Bench tested on MicrosquirtV3.
+
+2014-12-28 JSM
+Update ini to ISO-8859 charset. (TS doesn't like UTF-8 ?)
+Update datalog set.
+Add dash indicators for Lockup and OD-cancel.
+
+-- 0.026 released --
+
+2014-12-28 JSM
+Fix scaling on ppm, ppk inputs.
+
+2014-12-29 JSM
+Allow loggers in passthrough (MSG_REQX)
+
+2014-12-30 JSM
+Calculate trans slip and convertor slip (where possible.)
+Add in convertor slip, trans slip, output shaft speed to datalog set.
+
+2014-12-31 JSM
+Tweak to OD/cancel handling.
+
+-- 0.027 released --
+
+2015-01-11 JSM
+Include interp.s from MS2/Extra
+Shift retard uses curve to lookup retard value.
+EPC uses selected load parameter and intrp_
+Shift curves use selected load parameter and intrp_
+Correctly send shift retard via CAN.
+Standard gear ratios are built-in.
+Change OD Cancel/Enable handling.
+
+-- 0.028 released --
+
+2015-01-19 JSM
+CAN MSG_REQ, MSG_REQX tweaks per Jean.
+
+2015-01-20 JSM
+RPM based upshift allows regular kick-down.
+
+-- 0.029 released --
+
+2015-02-13 JSM
+ini tweak to allow up to 2047 CAN offset.
+Tooltip tweaks.
+Make pin names more logical by product.
+MS2 sel D input is PE0/JS7
+Tiny defaults tweak.
+
+-- pre-1.0 RC1 released --
+
+2015-03-11 JSM
+Handle 4L80E input shaft sensor position.
+Link ini file to PDF manual.
+Remove obsolete lockupvss setting.
+
+-- 1.0.0 released --
+
+2015-04-16 JSM
+Paddle-shift horn typo.
+
+2015-05-16 JSM
+Local TPS/MAP weren't working.
+
+2015-05-19 JSM
+ini tweak for dupe port names causing GPIO issue.
+
+-- 1.0.1 released --
+
